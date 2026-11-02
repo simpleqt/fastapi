@@ -46,7 +46,7 @@ def test_query_model_with_default_instance_partial_data_still_errors():
 
     @app.get("/")
     def read(filters: Annotated[Filters, Query()] = Filters(start=1)):
-        return filters
+        return filters  # pragma: no cover
 
     client = TestClient(app)
     response = client.get("/?limit=3")
@@ -99,7 +99,7 @@ def test_required_form_model_without_default_still_errors():
 
     @app.post("/login")
     def login(creds: Annotated[Creds, Form()]):
-        return creds
+        return creds  # pragma: no cover
 
     client = TestClient(app)
     response = client.post("/login", data={})
@@ -116,7 +116,7 @@ def test_openapi_default_instance_model_fields_are_not_required():
 
     @app.get("/")
     def read(filters: Annotated[Filters, Query()] = Filters(start=1)):
-        return filters
+        return filters  # pragma: no cover
 
     client = TestClient(app)
     response = client.get("/openapi.json")
@@ -134,7 +134,7 @@ def test_openapi_required_model_fields_stay_required():
 
     @app.get("/")
     def read(filters: Annotated[Filters, Query()]):
-        return filters
+        return filters  # pragma: no cover
 
     client = TestClient(app)
     response = client.get("/openapi.json")
